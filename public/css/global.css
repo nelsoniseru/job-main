@@ -1,0 +1,87 @@
+/* * {
+    font-family: 'DM Sans', sans-serif; for normal text 
+    font-family: 'Poppins', sans-serif; for headers (bold) text
+} */
+
+:root {
+    --bs-primary: #13274F;
+    --bs-primary-light: #0e1d39;
+}
+
+.btn-primary {
+    background-color: var(--bs-primary);
+    border-color: var(--bs-primary);
+}
+
+.btn-primary:hover {
+    background-color:  var(--bs-primary-light);
+    /* Adjust the hover color if needed */
+    border-color: var(--bs-primary-light);
+}
+
+.btn-primary.focus,
+.btn-primary:focus {
+    box-shadow: 0 0 0 0.25rem rgba(19, 39, 79, 0.5);
+    /* Adjust the focus shadow if needed */
+    background-color: var(--bs-primary-light);
+}
+
+.btn-primary:active,
+.btn-primary.focus:active,
+.btn-primary:focus:active {
+    outline: none;
+    /* Remove the default focus outline during the active state */
+    background-color: var(--bs-primary-light);
+    border-color: var(--bs-primary-light);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+}
+
+label {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+}
+
+.btn,
+p,
+nav, 
+div {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+}
+
+.custom-focus-color:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+
+/* Index */
+.btn-jobseeker {
+    background: #ff7545;
+    border: 1px solid #ff7545;
+    color: #fff;
+}
+
+.btn-jobseeker:hover {
+    background: #ff8c66;
+    color: #fff;
+}
+
+/* Application List Page */
+.back-btn {
+    border-color: var(--bs-primary);
+    color: var(--bs-primary);
+}
+
+.back-btn:hover {
+    background-color: var(--bs-primary);
+}

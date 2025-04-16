@@ -1,0 +1,104 @@
+<div class="container my-4 py-4 my-md-5 py-md-5 px-3" style="max-width: 800px;">
+
+    <h1 class="mb-4">Update Job</h1>
+
+    <% if(error) { %>
+
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <%= error %>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+
+    <% } %>
+
+    <% if(success) { %>
+
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <%= message %>
+            <strong><a href="/dashboard" style="text-decoration: none; color:green">Dashboard</a></strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+
+    <% } %>
+
+    <form action="/job/update/<%= jobData.id %>" method="post">
+        <input type="hidden" name="userId" id="userId" value="<%= userId %>">
+        <input type="hidden" name="id" id="id" value="<%= jobData.id %>">
+        <div class="row">
+            <div class="col-md mb-4 mb-md-0">
+                <label class="visually-hidden">Company Name</label>
+                <div class="input-group">
+                    <div class="input-group-text">Company Name</div>
+                    <input type="text" class="form-control" id="companyName" placeholder="Company Name" name="companyName" value="<%= jobData.companyName %>">
+                </div>
+            </div>
+            <div class="col">
+                <label class="visually-hidden">Location</label>
+                <div class="input-group">
+                    <div class="input-group-text">Location</div>
+                    <input type="text" class="form-control" id="location" placeholder="Location" name="location" value="<%= jobData.location %>">
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-md mb-4 mb-md-0">
+                <label class="visually-hidden" for="salary">Salary</label>
+                <div class="input-group">
+                    <div class="input-group-text">Salary</div>
+                    <input type="text" class="form-control" id="salary" placeholder="6-10 Lpa" name="salary" value="<%= jobData.salary %>">
+                </div>
+            </div>
+            <div class="col">
+                <label class="visually-hidden" for="total-positions">Total Positions</label>
+                <div class="input-group">
+                    <div class="input-group-text">Total Positions</div>
+                    <input type="number" class="form-control" id="total-positions" placeholder="20" name="totalPositions" value="<%= jobData.totalPositions %>">
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-md mb-4 mb-md-0">
+                <label class="form-label">Job Category</label>
+                <select class="form-select" aria-label="Default select example" name="category">
+                    <option selected disabled>Select Job Category</option>
+                    <option value="Tech" <%= jobData.category === 'Tech' ? 'selected' : '' %>>Tech</option>
+                    <option value="Non-tech" <%= jobData.category === 'Non-tech' ? 'selected' : '' %>>Non-Tech</option>
+                </select>
+            </div>
+            <div class="col">
+                <label class="form-label">Job Designation</label>
+                <select class="form-select" name="designation">
+                    <option disabled>Select Job Designation</option>
+                    <% const designations = ['HR', 'SDE', 'Devops', 'Security', 'Front-End Developer', 'Back-End Developer', 'Full-stack Developer']; %>
+                    <% designations.forEach(designation => { %>
+                        <option value="<%= designation %>" <%= jobData.designation === designation ? 'selected' : '' %>><%= designation %></option>
+                    <% }); %>
+                </select>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-md mb-4 mb-md-0">
+                <label class="form-label">Skills</label>
+                <select class="form-select" multiple name="skills">
+                    <option disabled>Select skills required for this job</option>
+                    <% const selectedSkills = jobData.skills || []; %>
+                    <% const skills = ['NodeJs', 'ReactJS', 'MongoDB', 'DSA', 'SQL', 'Express', 'Java', 'C++']; %>
+                    <% skills.forEach(skill => { %>
+                        <option value="<%= skill %>" <%= selectedSkills.includes(skill) ? 'selected' : '' %>><%= skill %></option>
+                    <% }); %>
+                </select>
+            </div>
+            <div class="col">
+                <label for="applyby" class="form-label">Expiry date</label>
+                <input type="date" class="form-control" id="applyby" name="applyby" value="<%= jobData.applyby %>">
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-4">Save</button>
+        <a href="#" class="btn btn-outline-secondary back-btn mt-4 ms-2" onclick="window.history.back()">Cancel</a>
+    </form>
+
+</div>

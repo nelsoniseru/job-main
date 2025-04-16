@@ -1,0 +1,52 @@
+<div class="container my-4 py-4 my-md-5 py-md-5 px-3" style="max-width: 1320px;">
+
+    <% if(error) { %>
+        <p class="mt-3 fw-medium text-danger"><%= error %></p>
+    <% } %>
+
+    <% if(success) { %>
+        <p class="mt-3 fw-medium text-success"><%= message %></p>
+    <% } %>
+    <h4>Approval page</h4>
+    
+    
+    <div class="">
+     
+        <div class="">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="table" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Full Name</th>
+                            <th>Email</th>
+                            <th>Video</th>
+                            <th>Cv</th>
+                            <th>Github</th>                                       
+                            <th>Linkedn</th>  
+                            <th>Action</th>  
+                        </tr>                                     
+                    </thead>
+                 
+                    <tbody>
+                             <%users.forEach(e=>{%>          
+                            <tr>                               
+                                <td><%=e.full_name%></td>
+                                <td><%=e.email%></td>
+                                <td><a href="<%=e.intro%>">click to view</a></td>
+                               <td>                                    <a  href="http://localhost:3030/<%= e.cv%>" class="btn btn-primary"><i class="bi bi-file-earmark-text"></i> View</a>
+                               </td>
+                                <td><a href="<%=e.linkedn%>">click to view</a></td>
+                                <td><a href="<%=e.github%>">click to view</a></td>
+                                <td><a href="/reject/<%=e._id%>">reject</a> <a href="/approve/<%=e._id%>">approve</a></td>
+                           
+                            </tr>
+                            <%})%>   
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+    </div>
+    
+    </div>

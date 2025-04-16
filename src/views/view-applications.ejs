@@ -1,0 +1,56 @@
+<div class="container my-4 py-4 my-md-5 py-md-5 px-3" style="max-width: 800px;">
+
+    <% if(success) { %>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <span><%=message%>!</span>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <% } %>
+    <h1 class="mb-4">Job applications</h1>
+
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col"> companyName</th>
+                <th scope="col"> Designation</th>
+                <th scope="col">Status</th>
+                <th scope="col">Resume</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+            
+                <% for(var i = 0; i < applications.length; i++) { %>
+    
+                    <tr>
+                        <th scope="row"><%= i+1 %></th>
+                        <td><%= applications[i].user.full_name %></td>
+                        <td><%= applications[i].user.email %></td>
+                        <td><%= applications[i].job.companyName %></td>
+                        <td><%= applications[i].job.designation %></td>
+                        <td><%= applications[i].status %></td>
+                        <td>
+                            <a  href="http://localhost:3030/<%= applications[i].user.cv%>" class="btn btn-primary"><i class="bi bi-file-earmark-text"></i> View</a>
+                        </td>
+                        <td>
+                                
+                     <a class="dropdown-item" href="/job/accept/<%= applications[i].user._id %>/<%= applications[i].job %>"><i class="bi bi-pencil-square"></i> Accept</a> <a class="dropdown-item"  href="/job/decline/<%= applications[i].user._id%>/<%= applications[i].job %>"><i class="bi bi-trash"></i> Decline</a>
+                            
+                                </ul>
+                            </div>
+                        </td>
+                  </tr>
+    
+                <% } %>
+            
+            </tbody>
+        </table>
+    </div>
+    <a href="#" class="btn btn-outline-secondary back-btn mt-4" onclick="window.history.back()">
+        <i class="bi bi-arrow-left"></i> Back to job details
+    </a>
+</div>

@@ -1,0 +1,120 @@
+<div class="container my-4 py-4 my-md-5 py-md-5 px-3" style="max-width: 800px;">
+
+    <% if(success) { %>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <span>Job application submitted successfully!</span>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <% } %>
+
+    <h1 class="mb-4 fs-2 fw-normal">
+        <span class="text-primary-emphasis"><%= jobData.designation %></span>
+        <span class="text-success"> opportunity in <%= jobData.location %> at</span> 
+        <span class="text-primary"><%= jobData.companyName %></span>
+    </h1>
+
+    <div class="d-flex justify-content-between mb-4">
+        <div>
+            <h5>
+           <span class="badge rounded-pill text-bg-danger"> actively hiring</span>
+            </h5>
+        
+        </div>
+        
+
+
+         
+
+
+    </div>
+
+    <div>
+        <h3 class="fw-normal"><%= jobData.companyName %></h3>
+        <p><%= jobData.category %> <%= jobData.designation %></p>
+
+        <ul style="list-style: none;" class="ps-0 fs-5 text">
+            <li><i class="bi bi-geo-alt-fill"></i> <%= jobData.location %></li>
+            <li><i class="bi bi-currency-naira">₦</i> <%= jobData.salary.toLocaleString() %></li>
+            <li><i class="bi bi-hourglass-split"></i> <%= formatDate(jobData.expiry_date) %></li>
+            <li><i class="bi bi-bar-chart-fill"></i> Number of openings: <%= jobData.totalPositions %></li>
+    
+    
+        </ul>
+
+        <% if (Array.isArray(jobData.skills)) { %>
+            <% for (var i = 0; i < jobData.skills.length; i++) { %>
+                <span class="badge rounded-pill text-bg-secondary"><%= jobData.skills[i] %></span>  
+            <% } %>
+        <% } else { %>
+            <span class="badge rounded-pill text-bg-secondary"><%= jobData.skills %></span>
+        <% } %>
+
+        <p class="mt-3 text-secondary">Posted on: <%= formatDate(jobData.createdAt) %></p>
+        
+    </div>
+
+    <div class="mt-4">
+      <% if(!jobApplication){%>
+        <a href="/job-apply/<%=jobData._id%>" class="btn btn-primary">
+            <i class="bi bi-clipboard2-check"></i> Apply
+        </a>
+     <%}else{%>
+        <p class="mt-3 fw-medium text-danger">you already applied </p>
+
+      <%}%>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="applyjob" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Fill out the form</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="/applyjob" method="post" enctype="multipart/form-data">
+
+                    <input type="hidden" name="jobId" value="<%= jobData.id %>">
+                    
+                    <div class="mb-3">
+                        <label class="visually-hidden">Full Name</label>
+                        <div class="input-group">
+                            <div class="input-group-text">Full Name</div>
+                            <input type="text" class="form-control" id="name" name="name" required>
+                        </div>
+                    </div>
+
+                    
+                    <div class="mb-3">
+                        <label class="visually-hidden">Email address</label>
+                        <div class="input-group">
+                            <div class="input-group-text">Email address</div>
+                            <input type="email" class="form-control" id="email" name="email" required>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="visually-hidden">Contact</label>
+                        <div class="input-group">
+                            <div class="input-group-text">Contact</div>
+                            <input type="tel" class="form-control" id="contact" name="contact" required>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="visually-hidden">Resume</label>
+                        <div class="input-group">
+                            <div class="input-group-text">Resume</div>
+                            <input type="file" class="form-control" id="resume" name="resume" accept=".pdf, image/*" required>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+        </div>
+    </div>
+
+</div>

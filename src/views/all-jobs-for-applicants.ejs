@@ -1,0 +1,49 @@
+<div class="container my-4 py-4 my-md-5 py-md-5 px-3" style="max-width: 1320px;">
+ 
+    <h2>Open Jobs</h2>
+    <div class="d-flex flex-wrap justify-content-start mt-5">
+
+        <% if(jobs.length == 0) {%>
+            <div>
+                <p>No Jobs found.</p>
+                <p><a href="/all-jobs"> Click here to see all jobs.</a></p>
+            </div>
+        <% } %>
+
+        <% if(jobs) { %>
+
+            <% jobs.forEach(job => { %>
+
+                <div class="card mb-5 p-2 shadow bg-body-tertiary rounded flex-fill flex-md-grow-0 me-4 ms-4 ms-md-0" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title"><%= job.companyName %></h5>
+                        <h6 class="card-subtitle mt-2 mb-2 text-body-secondary"><%= job.category %> <%= job.designation %></h6>
+                        <p class="card-text">
+                            <i class="bi bi-geo-alt-fill" style="font-size: 1.3rem; color: cornflowerblue;"></i>
+                            <%= job.location %>
+                        </p>
+                        <p class="card-text">
+                            <i class="bi bi-currency-rupee" style="font-size: 1.3rem; color: cornflowerblue;"></i> 
+                            <%= job.salary %></p>
+                        <p>
+                            <% if (Array.isArray(job.skills)) { %>
+                                <% for (var i = 0; i < job.skills.length; i++) { %>
+                                    <span class="badge rounded-pill text-bg-secondary"><%= job.skills[i] %></span>  
+                                <% } %>
+                            <% } else { %>
+                                <span class="badge rounded-pill text-bg-secondary"><%= job.skills %></span>
+                            <% } %>
+                        </p>
+
+                    
+                        <a href="/job/<%= job.id%>" class="mt-3 btn btn-primary">View Details</a>
+                    </div>
+                </div>
+
+            <% }) %>
+
+        <% } %>
+        
+    </div>
+
+</div>

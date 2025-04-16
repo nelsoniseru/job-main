@@ -1,0 +1,7 @@
+# .gitignore
+node_modules/
+.env
+instructions.htm
+todos.txt
+# Local Netlify folder
+.netlify

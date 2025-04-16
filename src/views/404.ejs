@@ -1,0 +1,31 @@
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
+
+    .container {
+        text-align: center;
+        margin-top: 100px;
+    }
+
+    .error-code {
+        font-size: 120px;
+        font-weight: bold;
+        color: #dc3545;
+    }
+
+    .error-message {
+        font-size: 24px;
+        color: #495057;
+    }
+
+    .back-home {
+        margin-top: 30px;
+    }
+</style>
+
+<div class="container">
+    <div class="error-code">404</div>
+    <div class="error-message">Oops! <%= type %> not found.</div>
+    <a href="/" class="btn btn-primary back-home">Back to Home</a>
+</div>
